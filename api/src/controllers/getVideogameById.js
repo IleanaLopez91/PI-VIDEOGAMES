@@ -1,26 +1,39 @@
 const axios = require("axios");
-require('dotenv').config();
-const {APY_KEY} = process.env
+const { Videogame } = require("../db");
+const { APY_KEY } = process.env;
 
-const URL = "https://api.rawg.io/api/games/"
-//https://api.rawg.io/api/games/3498?key=d4f1c269996c4da4b2a27f110842496b
+const isUUID = (id) => {
+    return id.includes("-");
+  };
 
-const getVideogameById = async (req, res) => {
+
+const cleanObject = (obj) => {
+  return {
+    id: obj.id,
+    name: obj.name,
+    description: obj.description,
+    platform: obj.platforms.name,
+    image: obj.background_image,
+    released: obj.released,
+    rating: obj.rating,
+    genres: obj.genres.name,
+  };
+};
+
+const getVideogameById = async (id) => {
     try {
-        const { id } = req.params;
-        const response = await axios.get(`${URL}${id}?key=${APY_KEY}`)
-        console.log(response.data)
-        if(response.data){
-            const {id, name, description, platforms, background_image, released, rating} = response.data;
-            const platformNames = platforms && platforms.map(plat => plat.platform.name);
-            const game = {id, name, description, platformNames, background_image, released, rating}
-            res.status(200).json(game)
-        }else{
-            res.status(404).json({message: "Game not found"})
-        }
+      /*if (isUUID(id)) {
+        const gamesFromDB = await Videogame.findAll({ where: { id: id } });
+        return gamesFromDB;
+      }*/
+      const { data } = await axios.get(`https://api.rawg.io/api/games/${id}?key=${APY_KEY}`);
+      console.log(data)
+      const gameByIdApi = cleanObject(data);
+      console.log(gameByIdApi)
+      return gameByIdApi;
     } catch (error) {
-        res.status(500).json({message: error.message}) 
+      throw new Error(error.message);
     }
-}
-
-module.exports = getVideogameById
+  };
+  
+  module.exports = getVideogameById

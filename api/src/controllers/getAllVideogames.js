@@ -1,15 +1,42 @@
 const axios = require("axios");
-require('dotenv').config();
-const {APY_KEY} = process.env
+const { Videogame } = require("../db");
+const { APY_KEY } = process.env;
 
-const getAllVideogames = async (req, res) => {
+const paginado = async() => {
+    let apiGames = [];
+    for(let i = 1; i <=2; i++){
+        const {data} = await axios.get(`http://api.rawg.io/api/games?key=${APY_KEY}`);
+        console.log (data)
+        apiGames = [...apiGames, ...data.results]
+    }
+    console.log(apiGames)
+    return apiGames;
+}
+
+const videogamesFiltered = (games) => {
+    return games.map((game) => {
+        return {
+            id: game.id,
+            name: game.name,
+            description: game.description,
+            platform: game.platforms.map((el)=>el.platform.name),
+            background_image: game.background_image,
+            released: game.released,
+            rating: game.rating,
+            genres: game.genres.map((el) => el.name)
+        }
+    })
+}
+
+const getAllVideogames = async() => {
     try {
-        const response = await axios.get(`http://api.rawg.io/api/games?key=${APY_KEY}`)
-        const arrayOfGames = response.data.results;
-        //const arr = arrayOfGames.map(el => el.name)
-        res.status(200).json(arrayOfGames)
+        const videogamesDB = await Videogame.findAll();
+        const videogamesAPI = videogamesFiltered(await paginado());
+        const allVideogames = [...videogamesDB, ...videogamesAPI];
+        console.log(allVideogames)
+        return allVideogames
     } catch (error) {
-        res.status(500).json({message: error.message})
+        throw new Error({error: error.message})
     }
 }
 
