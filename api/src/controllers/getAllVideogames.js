@@ -31,9 +31,9 @@ const videogamesFiltered = (games) => {
 const getAllVideogames = async() => {
     try {
         const videogamesDB = await Videogame.findAll();
+        console.log(videogamesDB);
         const videogamesAPI = videogamesFiltered(await paginado());
         const allVideogames = [...videogamesDB, ...videogamesAPI];
-        console.log(allVideogames)
         return allVideogames
     } catch (error) {
         throw new Error({error: error.message})

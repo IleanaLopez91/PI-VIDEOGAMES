@@ -12,11 +12,11 @@ const cleanObject = (obj) => {
     id: obj.id,
     name: obj.name,
     description: obj.description,
-    platform: obj.platforms.name,
+    platform: obj.platforms.map((el)=>el.platform.name),
     image: obj.background_image,
     released: obj.released,
     rating: obj.rating,
-    genres: obj.genres.name,
+    genres: obj.genres.map((el) => el.name)
   };
 };
 
@@ -27,7 +27,6 @@ const getVideogameById = async (id) => {
         return gamesFromDB;
       }*/
       const { data } = await axios.get(`https://api.rawg.io/api/games/${id}?key=${APY_KEY}`);
-      console.log(data)
       const gameByIdApi = cleanObject(data);
       console.log(gameByIdApi)
       return gameByIdApi;

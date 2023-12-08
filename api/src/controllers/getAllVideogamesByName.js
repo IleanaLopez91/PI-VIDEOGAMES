@@ -1,6 +1,7 @@
 const axios = require("axios");
 const{ Videogame } = require("../db");
 const { APY_KEY } = process.env;
+const { Op } = require("sequelize");
 
 const numberOfgamesFromDB = (gamesDB) => {
     if(gamesDB !== undefined && gamesDB.length <= 15){
@@ -25,10 +26,11 @@ const videogamesFiltered = (games) => {
 
 const getAllVideogameByName = async (name) => {
     try {
-        //const videogamesFromDB = await Videogame.findAll({where: {name: { [Op.iLike]: `%${name}%`}}});
+        const videogamesFromDB = await Videogame.findAll({where: {name: { [Op.iLike]: `%${name}%`}}});
 
-        /*const remanente = numberOfgamesFromDB(videogamesDB);
-        console.log(remanente)*/
+        const remanente = numberOfgamesFromDB(videogamesFromDB);
+        console.log(remanente)
+        
         //http://api.rawg.io/api/games?key=${APY_KEY}&search=${name}
 
         const {data} = await axios(`https://api.rawg.io/api/games?search=${name}&key=${APY_KEY}`);
@@ -37,13 +39,15 @@ const getAllVideogameByName = async (name) => {
         
         const videogamesFromAPI = [];
 
-        for(let i = 0; i < 5; i ++){
+        for(let i = 0; i < remanente; i ++){
             videogamesFromAPI.push(videogamesAPI[i])
         };
         console.log(videogamesFromAPI)
-        return [...videogamesFromAPI];
+        return [...videogamesFromDB, ...videogamesFromAPI];
     } catch (error) {
-        throw new Error({error: error.message})
+        console.error("Error in getAllVideogameByName:", error);
+        throw new Error({ error: error.message });
     }
+    
 }
 module.exports = getAllVideogameByName
