@@ -1,0 +1,93 @@
+.landing {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  text-align: center;
+}
+
+.landing h1 {
+  margin-bottom: 140px;
+  font-size: 640%;
+  font-family: 'Comic Sans MS';
+  color: antiquewhite;
+  text-shadow: 2px 4px 10px rgb(226, 209, 209);
+}
+
+/* Animación para las letras */
+.landing h1 span {
+  display: inline-block;
+  opacity: 0;
+  animation: fadeInUp 0.8s forwards;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Aplicar retraso progresivo a cada letra */
+.landing h1 span:nth-child(1) {
+  animation-delay: 0s; /* Sin retraso para la primera letra */
+}
+
+.landing h1 span:nth-child(2) {
+  animation-delay: 0.3s; /* 0.5 segundos de retraso para la segunda letra */
+}
+
+.landing h1 span:nth-child(3) {
+  animation-delay: 0.6s; /* 1 segundo de retraso para la tercera letra */
+}
+
+.landing h1 span:nth-child(4) {
+  animation-delay: 0.9s; /* 1 segundo de retraso para la tercera letra */
+}
+.landing h1 span:nth-child(5) {
+  animation-delay: 1.2s; /* 1 segundo de retraso para la tercera letra */
+}
+
+.landing h1 span:nth-child(6) {
+  animation-delay: 1.5s; /* 1 segundo de retraso para la tercera letra */
+}
+
+.landing h1 span:nth-child(7) {
+  animation-delay: 1.8s; /* 1 segundo de retraso para la tercera letra */
+}
+
+.landing h1 span:nth-child(8) {
+  animation-delay: 2.1s; /* 1 segundo de retraso para la tercera letra */
+}
+
+.landing h1 span:nth-child(9) {
+  animation-delay: 2.4s; /* 1 segundo de retraso para la tercera letra */
+}
+
+.landing h1 span:nth-child(10) {
+  animation-delay: 2.7s; /* 1 segundo de retraso para la tercera letra */
+}
+
+
+
+/* Repite el patrón para cada letra */
+
+
+  
+  .landing a {
+    font-size: 150%;
+    color: #d660b8; /* Color del texto del enlace */
+    background-color: #d5d9df; /* Color de fondo del enlace */
+    padding: 30px 50px; /* Añade relleno al enlace */
+    border-radius: 12px; /* Agrega esquinas redondeadas */
+    box-shadow: 2px 4px 10px rgb(226, 209, 209);
+  }
+
+  .landing a:hover{
+    transform: scale(1.1);
+}
