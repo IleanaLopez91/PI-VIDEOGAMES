@@ -6,8 +6,9 @@ const postVideoGames = async (req, res) => {
         if(!name || !description || !platforms || !background_image || !released || !rating || !genres){
             return res.status(401).json({message: "Faltan datos"})
         }
-        console.log({ name, description, platforms, background_image, released, rating})
+        //console.log({ name, description, platforms, background_image, released, rating})
         const [createdGame, created] = await Videogame.findOrCreate({where: { name }, defaults : {name, description, platforms, background_image, released, rating, genres}})
+        console.log(createdGame)
         if(!created){
             return res.status(400).json({ error: "El juego ya existe en nuestra biblioteca." });
         }

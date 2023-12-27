@@ -2,14 +2,14 @@ const axios = require("axios");
 const { Videogame } = require("../db");
 const { APY_KEY } = process.env;
 
-const paginado = async() => {
+const videogames100 = async() => {
     let apiGames = [];
     for(let i = 1; i <=2; i++){
-        const {data} = await axios.get(`http://api.rawg.io/api/games?key=${APY_KEY}`);
-        console.log (data)
+        console.log("hasta aca todo bien")
+        const {data} = await axios.get(`http://api.rawg.io/api/games?key=${APY_KEY}&page=${i}`);
         apiGames = [...apiGames, ...data.results]
     }
-    console.log(apiGames)
+    //console.log(apiGames)
     return apiGames;
 }
 
@@ -30,9 +30,10 @@ const videogamesFiltered = (games) => {
 
 const getAllVideogames = async() => {
     try {
+        
         const videogamesDB = await Videogame.findAll();
-        console.log(videogamesDB);
-        const videogamesAPI = videogamesFiltered(await paginado());
+        //console.log(videogamesDB);
+        const videogamesAPI = videogamesFiltered(await videogames100());
         const allVideogames = [...videogamesDB, ...videogamesAPI];
         return allVideogames
     } catch (error) {

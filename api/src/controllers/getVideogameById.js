@@ -2,11 +2,6 @@ const axios = require("axios");
 const { Videogame } = require("../db");
 const { APY_KEY } = process.env;
 
-const isUUID = (id) => {
-    return id.includes("-");
-  };
-
-
 const cleanObject = (obj) => {
   return {
     id: obj.id,
@@ -20,16 +15,27 @@ const cleanObject = (obj) => {
   };
 };
 
-const getVideogameById = async (id) => {
+const getVideogameById = async (id, source) => {
     try {
-      /*if (isUUID(id)) {
+      /*if (isUUID(id))
         const gamesFromDB = await Videogame.findAll({ where: { id: id } });
         return gamesFromDB;
       }*/
-      const { data } = await axios.get(`https://api.rawg.io/api/games/${id}?key=${APY_KEY}`);
-      const gameByIdApi = cleanObject(data);
-      console.log(gameByIdApi)
-      return gameByIdApi;
+      //const gameById = source === "api"
+      //  ? (await axios.get(`https://api.rawg.io/api/games/${id}?key=${APY_KEY}`)).data
+      //  : await Videogame.findByPk(id);
+
+      //const { data } = await axios.get(`https://api.rawg.io/api/games/${id}?key=${APY_KEY}`);
+
+      if(source === "api"){
+        const { data } = await axios.get(`https://api.rawg.io/api/games/${id}?key=${APY_KEY}`);
+        return cleanObject(data);
+      }else{
+        return await Videogame.findByPk(id);
+      }
+      
+      //console.log(gameByIdApi)
+      //return gameByIdApi;
     } catch (error) {
       throw new Error(error.message);
     }
