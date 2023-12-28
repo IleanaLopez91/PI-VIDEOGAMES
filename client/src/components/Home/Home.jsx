@@ -2,14 +2,17 @@ import React, { useEffect, useState } from 'react';
 import {useDispatch, useSelector} from "react-redux"
 import Cards from "../Cards/Cards";
 import Form from '../Form/Form';
-import {getAllGames, orderGames} from "../../redux/actionsCreators";
+import {getAllGames, orderGames, getGenres} from "../../redux/actionsCreators";
 import style from "./Home.module.css";
 
 const Home = ({displayedGames, handlePageChange, currentPage, totalPages, endIndex, allGames}) => {
-
-  const genres = useSelector(state=>state.genres)
   const dispatch = useDispatch();
-
+  
+  useEffect(()=>{
+    dispatch(getGenres())
+  },[dispatch]) 
+  const genres = useSelector(state=>state.genres)
+  
   const handleFilter = (e) => {
     dispatch(orderGames(e.target.value))
   }
@@ -71,7 +74,6 @@ const Home = ({displayedGames, handlePageChange, currentPage, totalPages, endInd
             Next Page
           </button>
         </div>
-        <Form />
       </div>
     </div>
   );

@@ -9,9 +9,6 @@ const Form = () => {
 
   const dispatch = useDispatch();
 
-  useEffect(()=>{
-    dispatch(getGenres())
-  },[dispatch]) 
   const genres = useSelector(state=>state.genres)
   //console.log(genres)
 
