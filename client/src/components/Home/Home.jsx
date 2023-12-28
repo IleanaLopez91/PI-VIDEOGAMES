@@ -2,36 +2,21 @@ import React, { useEffect, useState } from 'react';
 import {useDispatch, useSelector} from "react-redux"
 import Cards from "../Cards/Cards";
 import Form from '../Form/Form';
-import {getAllGames} from "../../redux/actionsCreators";
+import {getAllGames, orderGames} from "../../redux/actionsCreators";
 import style from "./Home.module.css";
 
-const Home = () => {
+const Home = ({displayedGames, handlePageChange, currentPage, totalPages, endIndex, allGames}) => {
 
+  const genres = useSelector(state=>state.genres)
   const dispatch = useDispatch();
-  const allGames = useSelector((state) => state.allGames);
-  const gamesPerPage = 5; // Número de juegos por página
-  const [currentPage, setCurrentPage] = useState(1);
-  const [searchName, setSearchName] = useState("");
 
-  const startIndex = (currentPage - 1) * gamesPerPage;
-  const endIndex = startIndex + gamesPerPage;
+  const handleFilter = (e) => {
+    dispatch(orderGames(e.target.value))
+  }
 
-  const filteredGames = searchName
-    ? allGames.filter((game) =>
-    game.name.toLowerCase().includes(searchName.toLowerCase()))
-    : allGames;
+  const orderGames = useSelector((state) => state.orderGameByName)
 
-  const displayedGames = filteredGames.slice(startIndex, endIndex);
-  
-  useEffect(() => {
-    dispatch(getAllGames());
-  }, [dispatch]);
-  
-  const totalPages = Math.ceil(allGames.length / gamesPerPage);
-
-  const handlePageChange = (newPage) => {
-    setCurrentPage(newPage);
-  };
+  const handlerOrder = () => {}
 
   return (
     <div>
@@ -39,7 +24,34 @@ const Home = () => {
         <h1>ALL VIDEOGAMES</h1>
       </div>
       <div>
-        <Cards games={displayedGames} />
+      <p>GENERO</p>
+        <select onChange={handlerOrder}>
+          {genres.map((genre) =>{
+            return (
+              <option value = {genre.name}>{genre.name.toUpperCase()}</option>
+            )
+          } )}
+        </select>
+        <p>ORIGEN</p>
+        <select>
+          <option value="Api">API</option>
+          <option value="Base de Datos">BASE DE DATOS</option>
+        </select>
+        <p>NOMBRE</p>
+        <select onChange={handleFilter}>
+          <option value="A">ASCENDENTE</option>
+          <option value="D">DESCENDENTE</option>
+        </select>
+        <p>RATING</p>
+        <select>
+          <option value="1">1 - 1.9</option>
+          <option value="2">2 - 2.9</option>
+          <option value="3">3 - 3.9</option>
+          <option value="4">4 - 5</option>
+        </select>
+      </div>
+      <div>
+        <Cards games={!orderGames.length ? displayedGames : orderGames} />
       </div>
       <div>
         <div className={style.text}>

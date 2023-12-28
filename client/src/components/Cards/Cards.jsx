@@ -10,6 +10,7 @@ const Cards = ({games}) => {
       {games.map((game) => {
         return (
           <Card 
+            key={game.id}
             id={game.id}
             name={game.name}
             background_image={game.background_image}

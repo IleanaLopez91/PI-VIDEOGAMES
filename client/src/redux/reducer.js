@@ -1,11 +1,9 @@
-import { GET_ALLGAMES, SET_GAMES, FILTER, ORDER, CLEAN_ALL, GET_GENRES, POST_GAME} from "./actionsTypes";
+import { GET_ALLGAMES, FILTER, ORDER, GET_GENRES, POST_GAME} from "./actionsTypes";
 
 const inicialState = {
     allGames: [],
     genres: [],
-    gameByName: [],
-    page: 1,
-    gamesPerPage: 5
+    orderGameByName: []
 }
 
 const rootReducer = (state = inicialState, {type, payload}) => {
@@ -14,13 +12,7 @@ const rootReducer = (state = inicialState, {type, payload}) => {
         case GET_ALLGAMES:
             return{
                 ...state,
-                allGames: payload
-            }
-
-        case SET_GAMES:
-            return{
-                ...state,
-                allGames: payload
+                allGames: payload,
             }
 
         case FILTER:
@@ -36,23 +28,18 @@ const rootReducer = (state = inicialState, {type, payload}) => {
             let copy2 = state.allGames;
             let orderGames = copy2.sort((a, b) => {
                 if(payload === "A"){
-                    return a.name - b.name
+                    return a.name.localeCompare(b.name)
                 }else if(payload === "D"){
-                    return b.name - a.name
+                    return b.name.localeCompare(a.name)
                 }else{
                     return 0
                 }
             })
             return {
                 ...state,
-                allGames: orderGames
+                orderGameByName: orderGames
             }
 
-        case CLEAN_ALL:
-            return{
-                ...state,
-                allGames: []
-            }
 
         case GET_GENRES:
             return{
