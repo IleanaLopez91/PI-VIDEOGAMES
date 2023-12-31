@@ -4,7 +4,7 @@ const { APY_KEY } = process.env;
 
 const videogames100 = async() => {
     let apiGames = [];
-    for(let i = 1; i <=2; i++){
+    for(let i = 1; i <=5; i++){
         console.log("hasta aca todo bien")
         const {data} = await axios.get(`http://api.rawg.io/api/games?key=${APY_KEY}&page=${i}`);
         apiGames = [...apiGames, ...data.results]
