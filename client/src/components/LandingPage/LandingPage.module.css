@@ -73,12 +73,6 @@
   animation-delay: 2.7s; /* 1 segundo de retraso para la tercera letra */
 }
 
-
-
-/* Repite el patrón para cada letra */
-
-
-  
   .landing a {
     font-size: 150%;
     color: #d660b8; /* Color del texto del enlace */

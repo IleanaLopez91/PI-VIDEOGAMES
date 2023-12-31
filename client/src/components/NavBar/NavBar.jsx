@@ -1,14 +1,10 @@
-
-import React, { useEffect, useState } from 'react';
-import {useDispatch, useSelector} from "react-redux"
 import {Link} from "react-router-dom";
+
 import SearchBar from "../SearchBar/SearchBar";
+
 import style from "./NavBar.module.css"
 
-
-const NavBar = ({onSearch}) => {
-
-  
+const NavBar = () => {
 
   return (
     <div className={style.container}>
@@ -21,15 +17,18 @@ const NavBar = ({onSearch}) => {
 
         <Link to="/form">
           <button className={style.btn}>
-            CREA TU JUEGO
+            CREATE
+          </button>
+        </Link>
+        <Link to="/about">
+          <button className={style.btn}>
+            ABOUT
           </button>
         </Link>
       </div>
 
       <div className={style.searchBar}>
-        <SearchBar 
-          onSearch={onSearch}
-        />
+        <SearchBar />
       </div>
       
     </div>

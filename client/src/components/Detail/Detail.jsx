@@ -18,7 +18,7 @@ const Detail = () => {
         }
       });
   },[id])
-
+  
   return (
     <div>
       <div className={style.contenedordelnombre}>

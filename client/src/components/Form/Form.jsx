@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { validation } from './validation';
-import { postGame, getGenres } from "../../redux/actionsCreators"
+import { postGame, getGenres } from "../../redux/actionsCreators";
+
+import style from "./Form.module.css"
 
 const Form = () => {
 
@@ -93,8 +95,12 @@ const Form = () => {
   }
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
+    <div className={style.formContainer}>
+      <div className={style.completeForm}><p>COMPLETA EL FORMULARIO</p></div>
+      <div> 
+      <form onSubmit={handleSubmit} className={style.columnas}>
+        <div> 
+        <div className={style.separador}>  
         <div>
           <label>NAME</label>
         </div>
@@ -105,9 +111,13 @@ const Form = () => {
             type='text'
             value={gameForm.name}
             onChange={handleChange}
+            className={style.inputBtn}
           />
           {errors.name && <p>{errors.name}</p>}
         </div>
+        </div>
+
+    <div className={style.separador}>  
         <div>
           <label>IMAGE</label>
         </div>
@@ -118,9 +128,14 @@ const Form = () => {
             type='text'
             value={gameForm.background_image}
             onChange={handleChange}
+            className={style.inputBtn}
           />
           {errors.background_image && (<p>{errors.background_image}</p>)}
         </div>
+        </div>
+
+
+<div className={style.separador}>  
         <div>
           <label>DESCRIPTION</label>
         </div>
@@ -131,12 +146,16 @@ const Form = () => {
             maxLength={300}
             value={gameForm.description}
             onChange={handleChange}
+            className={style.inputBtn}
           />
           {errors.description && <p>{errors.description}</p>}
         </div>
+        </div>
 
+
+<div className={style.separador}>  
         <div>
-          <label>PLATFORM</label>
+          <label>PLATFORMS</label>
         </div>
         <div>
         {platforms.map((plat) => {
@@ -150,12 +169,23 @@ const Form = () => {
               value={plat}
               checked={gameForm.platform.includes(name)}
               onChange={platformChangeHandler}
+              className={style.chechBox}
             />
             </p>
           );
         })}
   {errors.platform && <p>{errors.platform}</p>}
         </div>
+        </div>
+
+        
+        </div>
+
+
+        <div> 
+
+
+          <div className={style.separador}>   
         <div>
           <label>FECHA DE LANZAMIENTO</label>
         </div>
@@ -166,8 +196,12 @@ const Form = () => {
             type='text'
             value={gameForm.released}
             onChange={handleChange}
+            className={style.inputBtn}
           />
         </div>
+        </div>
+
+<div className={style.separador}>  
         <div>
           <label>RATING</label>
         </div>
@@ -178,8 +212,13 @@ const Form = () => {
             type='text'
             value={gameForm.rating}
             onChange={handleChange}
+            className={style.inputBtn}
           />
         </div>
+        </div>
+
+
+        <div className={style.separador}>
         <div>
           <label>GENRES</label>
         </div>
@@ -201,11 +240,16 @@ const Form = () => {
           })}
           {errors.genres && <p>{errors.genres}</p>}
         </div>
-
-        <button 
-          type='submit'
-        >CREAR JUEGO</button>
+        </div>
+        
+        </div>
+        
       </form>
+      </div>
+      <button 
+          type='submit'
+          className={style.pages}
+        >CREATE GAME</button>
     </div>
   )
 }
