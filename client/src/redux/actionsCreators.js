@@ -89,10 +89,14 @@ export const postGame = (form) => {
   return async (dispatch) => {
     try {
       const { data } = await axios.post("http://localhost:3001/videogames", form);
-      console.log(data)
+      const videoGameWithFormattedGenres = {
+        ...data,
+        genres: data.genres.map((genre) => genre.name),
+      };
+      
       return dispatch({
         type: POST_GAME,
-        payload: data
+        payload: videoGameWithFormattedGenres
       })
     } catch (error) {
       console.log(error.response)

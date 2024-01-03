@@ -86,7 +86,7 @@ const rootReducer = (state = inicialState, {type, payload}) => {
     case POST_GAME:
       return{
         ...state, 
-        allGames: payload
+        allGames: [payload, ...state.allGames]
       }
         
     default:

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from 'react-router-dom';
 
 import { postGame } from "../../redux/actionsCreators";
 import { validation } from './validation';
@@ -11,6 +12,7 @@ const Form = () => {
   const platforms = [ "PC", "PlayStation 5", "PlayStation 4", "PlayStation 3", "Xbox One", "Xbox Series S/X", "Xbox 360", "Xbox", "Nintendo Switch", "Nintendo 3DS", "Nintendo DS", "Nintendo DSi", "iOS", "Android", "macOS", "Linux"]
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const genres = useSelector(state=>state.genres)
 
@@ -61,11 +63,11 @@ const Form = () => {
     });
   };
   
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     dispatch(postGame(gameForm));
-    console.log(gameForm)
+    window.alert("Juego creado exitosamente")
+    navigate("/home")
   }
 
   return (

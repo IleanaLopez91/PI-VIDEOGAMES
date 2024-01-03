@@ -9,6 +9,7 @@ const Detail = () => {
   const {id} = useParams();
 
   const [character, setCharacter] = useState([])
+  console.log(character)
 
   useEffect(() => {
     axios(`http://localhost:3001/videogames/${id}`)
@@ -37,7 +38,7 @@ const Detail = () => {
       <div className={style.containerDetail}>
         <div className={style.columna1}>
           <div className={style.containerImage}>
-            <img src={character.image} className={style.image}alt=''></img>
+            <img src={character?.image} className={style.image}alt=''></img>
           </div>  
           <div className={style.containerTextDescription}>
             <div className={style.textDescription}>

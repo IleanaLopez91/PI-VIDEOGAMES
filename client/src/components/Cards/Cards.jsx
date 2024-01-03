@@ -5,7 +5,7 @@ import Card from '../Card/Card';
 import style from "./Cards.module.css"
 
 const Cards = ({ allGames, paginationButtons, currentPage, handlePageChange }) => {
-  console.log(allGames)
+  
   const gamesPerPage = 15;
   const startIndex = (currentPage - 1) * gamesPerPage;
   const endIndex = startIndex + gamesPerPage;
