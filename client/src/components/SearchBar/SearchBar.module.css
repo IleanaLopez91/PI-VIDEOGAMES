@@ -8,7 +8,7 @@
 }
 
 .searchButton{
-    width: 100px; /* Establece el ancho deseado para el botón circular */
+    width: 100px; 
     height: 60px;
     border-radius: 0.8rem;
     background-color:rgba(182, 47, 110, 1);
@@ -24,11 +24,11 @@
 
 .searchButton:hover{
     transform: scale(1.1);
-    background-color: rgb(134, 28, 86);  /* Cambia el color de fondo a púrpura al pasar el cursor*/
+    background-color: rgb(134, 28, 86);
 }
 
 .logoutButton{
-    width: 100px; /* Establece el ancho deseado para el botón circular */
+    width: 100px; 
     height: 60px;
     border-radius: 0.8rem;
     background-color:rgb(177, 32, 53);
@@ -44,5 +44,5 @@
 
 .logoutButton:hover{
     transform: scale(1.1);
-    background-color: rgb(138, 10, 27); /* Cambia el color de fondo a púrpura al pasar el cursor*/
+    background-color: rgb(138, 10, 27); 
 }

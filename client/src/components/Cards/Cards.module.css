@@ -1,4 +1,4 @@
-.wrapperCards{
+.containerCards{
     display:flex;
     flex-wrap:wrap;
     justify-content:space-around;
@@ -6,7 +6,6 @@
 }
 
 .boton{
-    background-color: blueviolet;
     display: flex;
     align-items: center;
     justify-content:center;
@@ -24,4 +23,15 @@
 
 .botonsColors{
     background-color:rgba(182, 47, 110, 1);
+    border-radius: 0.5rem;
+    width: 60px;
+    height: 45px;
+    font-size: 20px;
+    font-weight: bold;
+    color: aliceblue;
+}
+
+.botonsColors:hover{
+    transform: scale(1.1);
+    cursor: pointer;
 }

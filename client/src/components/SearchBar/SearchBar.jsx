@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom"
 
 import { getAllGames, getVideoGamesByName } from '../../redux/actionsCreators';
 
@@ -8,10 +9,11 @@ import style from "./SearchBar.module.css";
 const SearchBar = () => {
 
   const dispatch = useDispatch();
+  const navigate = useNavigate()
   const [searchName, setSearchName] = useState("");
 
   const handleSearchChange = (e) => {
-      setSearchName(e.target.value);
+    setSearchName(e.target.value);
   };
 
   const handleSubmit = (e) => {
@@ -23,8 +25,12 @@ const SearchBar = () => {
     }
   };
 
+  const handleLogOut = () => {
+    navigate("/")
+  }
+
   return (
-    <div className={style.container}>
+    <div>
       <input 
         placeholder='Escribe un nombre...'
         type="search"
@@ -32,7 +38,6 @@ const SearchBar = () => {
         onChange={handleSearchChange}
         className={style.searchBar}
       />
-
       <button
         className={style.searchButton}
         onClick={handleSubmit}
@@ -41,6 +46,7 @@ const SearchBar = () => {
       </button>
       <button
         className={style.logoutButton}
+        onClick={handleLogOut}
       >
         LOGOUT
       </button>

@@ -6,6 +6,8 @@
     transition: transform 0.4s ease-in-out;
     font-family:'Comic Sans MS';
     box-shadow: 2px 4px 10px rgb(226, 209, 209);
+    width: 500px;
+    height: 390px;
 }
 
 .cardContainer:hover {
@@ -18,13 +20,13 @@
 
 .imagen {
     width: 100%;
-    height: 300px; /* Ajusta la altura según tus preferencias */
-    object-fit: cover; /* Ajusta el modo de ajuste para mantener las proporciones de la imagen */
+    height: 300px; 
+    object-fit: cover; 
     border-top-right-radius: 0.8rem;
     border-top-left-radius: 0.8rem;
 }
 
-.wrapperText{
+.text{
     position: relative;
     display: flex;
     justify-content: space-around;
@@ -33,7 +35,7 @@
 .name{
     position: absolute;
     border-radius: 1rem;
-    width: 200px;
+    width: 350px;
     background-color: rgba(182, 47, 110, 1);
     padding: 5px;
     height: 50px;
@@ -48,5 +50,6 @@
 .anotherText{
     text-align: center;
     justify-content: center;
-    align-items: center;
+    align-items: center
+   
 }

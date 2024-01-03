@@ -8,34 +8,3 @@
     font-family:'Comic Sans MS';
     text-shadow: 2px 4px 10px rgb(226, 209, 209);
 }
-
-.pageButton{
-    width: 150px; /* Establece el ancho deseado para el botón circular */
-    height: 60px;
-    border-radius: 0.8rem;
-    background-color: rgba(182, 47, 110, 0.8);
-    color: aliceblue;
-    font-size:20px;
-    border: none;
-    font-family:'Comic Sans MS';
-    cursor: pointer;
-    margin:0.3rem;
-    box-shadow: 0px 0px 30px rgba(246, 244, 244, 0.7);
-}
-
-.pageButton:hover{
-    transform: scale(1.1);
-    background-color: rgb(134, 28, 86);  /* Cambia el color de fondo a púrpura al pasar el cursor*/
-}
-
-.text{
-    display: flex;
-    align-items: center;
-    text-align: center;
-    justify-content: center;
-    margin: 0.5rem;
-    color: antiquewhite;
-    font-size: 120%;
-    font-family:'Comic Sans MS';
-    text-shadow: 2px 4px 10px rgb(226, 209, 209);
-}

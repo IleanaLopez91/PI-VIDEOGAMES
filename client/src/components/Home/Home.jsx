@@ -1,17 +1,14 @@
 import React, { useState } from 'react';
 import { useSelector} from "react-redux";
-//import {getAllGames, orderGames, getGenres} from "../../redux/actionsCreators";
 
 import Cards from "../Cards/Cards";
 import Filtros from '../Filtros/Filtros';
 
 import style from "./Home.module.css";
 
-
 const Home = () => {
 
   const allGames = useSelector((state) => state.allGames);
-  console.log(allGames)
   
   const [currentPage, setCurrentPage] = useState(1);
 

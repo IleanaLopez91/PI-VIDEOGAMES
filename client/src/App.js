@@ -11,9 +11,6 @@ import NavBar from "./components/NavBar/NavBar";
 import Detail from "./components/Detail/Detail";
 import About from "./components/About/About";
 
-//import './App.css';
-
-
 function App() {
 
   const location = useLocation();

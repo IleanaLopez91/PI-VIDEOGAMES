@@ -5,19 +5,19 @@
     background-color: rgba(44, 11, 111, 0.5);
   }
 
-  .btn{
+.btn{
     margin-right: 30px;
-    width: 100px; /* Establece el ancho deseado para el botón circular */
-    height: 60px; /* Establece la misma altura que el ancho para hacerlo circular */
-    border-radius: 0.8rem; /* Aplica un radio de borde del 50% para hacerlo circular */
+    width: 100px; 
+    height: 60px; 
+    border-radius: 0.8rem; 
     background-color:rgba(182, 47, 110, 1);
     color: aliceblue;
     font-family:'Comic Sans MS';
     font-weight: bold;
     font-size: 17px;
     box-shadow: 0px 0px 30px rgba(237, 234, 234, 0.5);
-    border: none; /* Elimina el borde si no se necesita */
-    cursor: pointer; /* Cambia el cursor al pasar el mouse sobre el botón */
+    border: none; 
+    cursor: pointer; 
 }
 
 .btn:hover {

@@ -47,13 +47,13 @@ const Filtros = ({ handlePageChange }) => {
   return (
     <div className={style.filterContainer}>
       <div className={style.filter}>
-      <label>ORIGEN</label>
+        <label>ORIGEN</label>
         <select
           ref={(el) => (selectRefs.current[0] = el)}
           name="origin"
           defaultValue={"DEFAULT"}
           onChange={handleOriginChange}
-          className={style.pages}
+          className={style.options}
         >
           <option value="DEFAULT" disabled hidden>
             --
@@ -61,15 +61,15 @@ const Filtros = ({ handlePageChange }) => {
           <option value="A">API</option>
           <option value="C">CREATED</option>
         </select>
-        </div>
-        <div className={style.filter}>
+      </div>
+      <div className={style.filter}>
         <label>GENRE</label>
         <select
           ref={(el) => (selectRefs.current[1] = el)}
           name="genders"
           defaultValue={"DEFAULT"}
           onChange={handleGenreChange}
-          className={style.pages}
+          className={style.options}
         >
           <option value="DEFAULT" disabled hidden>
             --
@@ -80,12 +80,12 @@ const Filtros = ({ handlePageChange }) => {
             </option>
           ))}
         </select>
-        </div>
-        <div className={style.filter}> 
+      </div>
+      <div className={style.filter}> 
         <label>NOMBRE</label>
         <select
           ref={(el) => (selectRefs.current[2] = el)}
-          className={style.pages}
+          className={style.options}
           name="orderByName"
           defaultValue={"DEFAULT"}
           onChange={handleAlphabeticChange}
@@ -96,15 +96,15 @@ const Filtros = ({ handlePageChange }) => {
           <option value="A">ASCENDING</option>
           <option value="D">DESCENDING</option>
         </select>
-        </div>
-        <div className={style.filter}> 
+      </div>
+      <div className={style.filter}> 
         <label>RATING</label>
         <select
           ref={(el) => (selectRefs.current[3] = el)}
           name="rating"
           defaultValue={"DEFAULT"}
           onChange={handleRatingChange}
-          className={style.pages}
+          className={style.options}
         >
           <option value="DEFAULT" disabled hidden>
             --
@@ -112,7 +112,7 @@ const Filtros = ({ handlePageChange }) => {
           <option value="H">HIGH RATING</option>
           <option value="L">LOW RATING</option>
         </select>
-        </div>
+      </div>
     </div>
   )
 }

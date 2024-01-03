@@ -1,148 +1,115 @@
-.fondo {
-    display: flex;
-    justify-content:space-evenly;
-    align-items: center;
-    margin: 1rem;
-  }
-  
-  .name {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 1rem; /* Añadido margen inferior */
-  }
-  
-  
-  
-  .imagen {
-    border-radius: 3rem;
-    width: 500px;
-    height: 270px;
-    object-fit: cover;
-    transition: transform 0.8s ease;
-    box-shadow: 0px 0px 60px rgba(23, 49, 217, 0.5);
-  }
+.conteinerName{
+  display: flex;
+  justify-content:center;
+}
 
-  .imagen:hover {
+.name{
+  background: linear-gradient(to bottom,rgb(71, 65, 192), rgb(116, 110, 221));
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 2rem;
+  width: 950px;
+  font-family: 'Comic Sans MS';
+  font-size: 5rem;
+  color: aliceblue;
+  border-radius: 0.8rem;
+  box-shadow: 0px 0px 60px rgba(77, 94, 203, 0.5);
+}
+
+.containerDetail {
+  display: flex;
+  justify-content:space-evenly;
+  align-items: center;
+  margin: 1rem;
+}
+
+.columna1{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between
+}
+
+.containerImage{
+  height: 285px;
+  width: 600px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Comic Sans MS';
+  font-size: 1rem;
+  color: aliceblue;
+  border-radius: 0.8rem;
+  margin: 1rem;
+}
+
+.image {
+  border-radius: 3rem;
+  width: 500px;
+  height: 270px;
+  object-fit: cover;
+  transition: transform 0.8s ease;
+  box-shadow: 0px 0px 60px rgba(23, 49, 217, 0.5);
+}
+
+  .image:hover {
     transform: rotateY(180deg); 
   }
-  
-  .rojo{
-    background: rgba(245, 242, 242, 0.9);
-    height: 600px;
-    width: 600px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-    break-inside: avoid;
-    font-family: 'Comic Sans MS';
-    color: rgb(34, 36, 38);
-    border-radius: 0.8rem;
-    font-size: 1rem;
-    box-shadow: 0px 0px 60px rgba(23, 49, 217, 0.5);
-    
-  }
 
+.containerTextDescription{
+  height: 285px;
+  width: 600px;
+  display: flex;
+  justify-content:space-evenly;
+  align-items: center;
+  margin: 1rem;
+}
 
-  .verde{
-    height: 285px;
-    width: 600px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: 'Comic Sans MS';
-    font-size: 1rem;
-    color: aliceblue;
-    border-radius: 0.8rem;
-    margin: 1rem;
-  }
+.textDescription{
+  background: rgba(245, 242, 242, 0.9);
+  width: 290px;
+  height: 285px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-family: 'Comic Sans MS';
+  font-size: 1.3rem;
+  color: rgb(23, 23, 102);
+  border-radius: 0.8rem;
+  font-size: 1.3rem;
+  margin: 0;
+  box-shadow: 0px 0px 60px rgba(23, 49, 217, 0.5);
+}
 
-  .nombre{
-    background: linear-gradient(to bottom,rgb(71, 65, 192), rgb(116, 110, 221));
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 2rem;
-    width: 950px;
-    font-family: 'Comic Sans MS';
-    font-size: 5rem;
-    color: aliceblue;
-    border-radius: 0.8rem;
-    box-shadow: 0px 0px 60px rgba(77, 94, 203, 0.5);
-  }
+.columna2{
+  background: rgba(245, 242, 242, 0.9);
+  height: 600px;
+  width: 600px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  break-inside: avoid;
+  font-family: 'Comic Sans MS';
+  color: rgb(34, 36, 38);
+  border-radius: 0.8rem;
+  font-size: 1rem;
+  box-shadow: 0px 0px 60px rgba(23, 49, 217, 0.5);
+}
 
-  .resto{
-    height: 285px;
-    width: 600px;
-    display: flex;
-    justify-content:space-evenly;
-    align-items: center;
-    margin: 1rem;
-  }
+.descriptionTitle{
+  font-size: 1.5rem;
+  font-weight: bolder;
+  color: rgb(23, 23, 102);
+}
 
-  .columna{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between
-  }
+.descriptionText{
+  overflow-y: auto;
+  margin: 1rem;
+  font-size: 1.3rem;
+  color: rgb(23, 23, 102);
+}
 
-  .description{
-    background: rgba(245, 242, 242, 0.9);
-    width: 290px;
-    height: 285px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    font-family: 'Comic Sans MS';
-    font-size: 1.3rem;
-    color: rgb(23, 23, 102);
-    border-radius: 0.8rem;
-    font-size: 1.3rem;
-    margin: 0;
-    box-shadow: 0px 0px 60px rgba(23, 49, 217, 0.5);
-  }
-
-  .contenedordelnombre{
-    display: flex;
-    justify-content:center;
-    
-  }
-
-  .parrafo{
-    
-    overflow: hidden;
-    text-overflow: ellipsis;
-    margin: 1rem;
-    font-size: 1.3rem;
-    color: rgb(23, 23, 102);
-    
-  }
-
-  .parraf{
-    font-size: 1.5rem;
-    font-weight: bolder;
-    color: rgb(23, 23, 102);
-    
-  }
-  
-  .content {
-    display: flex;
-    width: 100%; /* Ocupar todo el ancho del contenedor */
-  }
-    .detailText {
-    flex: 1; /* El texto ocupará todo el espacio disponible */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    font-family: 'Comic Sans MS';
-    font-size: 1rem;
-    color: aliceblue;
-    text-shadow: 2px 4px 10px red;
-  }
-  .imagenContainer {
-    flex: 1; /* La imagen ocupará todo el espacio disponible */
-    margin-right: 1rem; /* Añadido margen derecho */
-  }
