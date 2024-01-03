@@ -4,24 +4,19 @@ const postVideoGames = async (req, res) => {
     const{ name, description, platforms, background_image, released, rating, genres} = req.body;
     try {
         if(!name || !description || !platforms || !background_image || !released || !rating || !genres){
-            return res.status(401).json({message: "Faltan datos"})
+            return res.status(401).json({message: "Missing data"})
         }
-        //console.log({ name, description, platforms, background_image, released, rating})
         const [createdGame, created] = await Videogame.findOrCreate({where: { name }, defaults : {name, description, platforms, background_image, released, rating, genres}})
-        console.log(createdGame)
         if(!created){
-            return res.status(400).json({ error: "El juego ya existe en nuestra biblioteca." });
+            return res.status(400).json({ error: "The game already exists." });
         }
-
         const findGenres = await Genre.findAll({
             where: {
               name: genres,
             },
           });
-      
         await createdGame.addGenres(findGenres);
-        
-        res.status(200).json({success: "Juego crado con exito"})
+        res.status(200).json(createdGame)
     } catch (error) {
         res.status(500).json({message: error.message})
     }

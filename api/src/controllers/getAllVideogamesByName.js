@@ -27,25 +27,16 @@ const videogamesFiltered = (games) => {
 const getAllVideogameByName = async (name) => {
     try {
         const videogamesFromDB = await Videogame.findAll({where: {name: { [Op.iLike]: `%${name}%`}}});
-
         const remanente = numberOfgamesFromDB(videogamesFromDB);
-        console.log(remanente)
-        
-        //http://api.rawg.io/api/games?key=${APY_KEY}&search=${name}
-
         const {data} = await axios(`https://api.rawg.io/api/games?search=${name}&key=${APY_KEY}`);
-        
         const videogamesAPI = await videogamesFiltered(data.results);
-        
         const videogamesFromAPI = [];
-
         for(let i = 0; i < remanente; i ++){
             videogamesFromAPI.push(videogamesAPI[i])
         };
-        console.log(videogamesFromAPI)
+        
         return [...videogamesFromDB, ...videogamesFromAPI];
     } catch (error) {
-        console.error("Error in getAllVideogameByName:", error);
         throw new Error({ error: error.message });
     }
     

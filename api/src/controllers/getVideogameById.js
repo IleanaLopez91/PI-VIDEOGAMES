@@ -17,25 +17,12 @@ const cleanObject = (obj) => {
 
 const getVideogameById = async (id, source) => {
     try {
-      /*if (isUUID(id))
-        const gamesFromDB = await Videogame.findAll({ where: { id: id } });
-        return gamesFromDB;
-      }*/
-      //const gameById = source === "api"
-      //  ? (await axios.get(`https://api.rawg.io/api/games/${id}?key=${APY_KEY}`)).data
-      //  : await Videogame.findByPk(id);
-
-      //const { data } = await axios.get(`https://api.rawg.io/api/games/${id}?key=${APY_KEY}`);
-
       if(source === "api"){
         const { data } = await axios.get(`https://api.rawg.io/api/games/${id}?key=${APY_KEY}`);
         return cleanObject(data);
       }else{
         return await Videogame.findByPk(id);
       }
-      
-      //console.log(gameByIdApi)
-      //return gameByIdApi;
     } catch (error) {
       throw new Error(error.message);
     }
