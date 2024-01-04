@@ -4,49 +4,48 @@ export const validation = (inputs) => {
     const regexImage = /^(ftp|http|https):\/\/[^ "]+$/i;
     const regexFecha =  /^\d{4}-\d{2}-\d{2}$/;
 
-
     if(inputs.name.length > 12){
-        errors.name = "El nombre no debe tener mas de 12 caracteres"
+        errors.name = "The name must not exceed 12 characters"
     }
 
     if(!regexName.test(inputs.name)){
-        errors.name = "El usuario solo puede contener numeros, espacios vacios y letras"
+        errors.name = "The name can only contain numbers, empty spaces, and letters"
     }
 
     if(!regexImage.test(inputs.background_image)){
-        errors.background_image = "Debe ser una URL valida"
+        errors.background_image = "It must be a valid URL"
     }
 
     if(!inputs.description.length){
-        errors.description = "No puede estar vacio"
+        errors.description = "It cannot be empty"
     }
 
     if(inputs.description.length > 200){
-        errors.description = "La descripcion no puede superar mas de 200 caracteres"
+        errors.description = "The description cannot exceed 200 characters"
     }
 
     if(!inputs.platforms.length){
-        errors.platform = "Debe elegir al menos una plataforma"
+        errors.platforms = "You must choose at least one platform"
     }
 
     if(!regexFecha.test(inputs.released)){
-        errors.released = "La fecha tiene que tener este formato AAAA-MM-DD"
+        errors.released = "The date must have the format YYYY-MM-DD"
     }
 
     if(!inputs.released.length){
-        errors.released = "No puede estar vacio"
+        errors.released = "It cannot be empty"
     }
 
     if(inputs.rating > 5 || inputs.rating < 1){
-        errors.rating = "Debe ser entre 1 y 5"
+        errors.rating = "It must be between 1 and 5"
     }
 
     if(!inputs.rating.length){
-        errors.rating = "No puede estar vacio"
+        errors.rating = "It cannot be empty"
     }
 
     if(!inputs.genres.length){
-        errors.genres = "Debe elegir al menos un genre"
+        errors.genres = "You must choose at least one genre"
     }
 
     return errors

@@ -2,6 +2,7 @@ import {
   GET_ALLGAMES, 
   GET_GENRES, 
   GET_VIDEOGAMES_BY_NAME, 
+  NO_RESULTS_FOUND,
   FILTER_VIDEOGAMES_BY_ORIGIN, 
   FILTER_VIDEOGAMES_BY_GENRE,
   ORDER_VIDEOGAMES_ALPHATICALLY, 
@@ -12,7 +13,7 @@ import {
 const inicialState = {
   allGames: [],
   genres: [],
-  allGamesCopy: []
+  allGamesCopy: [],
 }
 
 const rootReducer = (state = inicialState, {type, payload}) => {
@@ -22,7 +23,8 @@ const rootReducer = (state = inicialState, {type, payload}) => {
       return{
         ...state,
         allGames: payload,
-        allGamesCopy: payload
+        allGamesCopy: payload,
+        
       }
 
     case GET_GENRES:
@@ -38,6 +40,7 @@ const rootReducer = (state = inicialState, {type, payload}) => {
       };
 
     case FILTER_VIDEOGAMES_BY_ORIGIN:
+
       const VideoGamesByOrigin = state.allGamesCopy.filter(
         (game) => (payload === "A" ? typeof game.id === "number" : typeof game.id === "string")
       );
@@ -47,10 +50,10 @@ const rootReducer = (state = inicialState, {type, payload}) => {
       };
 
     case FILTER_VIDEOGAMES_BY_GENRE:
-      const VideoGamesByGenre = state.allGamesCopy.filter((game) => game.genres.includes(payload))
+      const gamesByGenre = state.allGamesCopy.filter((game) => game.genres.includes(payload))
       return {
         ...state,
-        allGames: VideoGamesByGenre,
+        allGames: gamesByGenre,
       };
 
     case ORDER_VIDEOGAMES_ALPHATICALLY:
@@ -86,7 +89,13 @@ const rootReducer = (state = inicialState, {type, payload}) => {
     case POST_GAME:
       return{
         ...state, 
-        allGames: [payload, ...state.allGames]
+        allGames: [payload, ...state.allGames],
+        allGamesCopy: [payload, ...state.allGamesCopy]
+      }
+
+    case NO_RESULTS_FOUND:
+      return{
+        ...state,
       }
         
     default:

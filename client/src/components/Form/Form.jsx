@@ -66,8 +66,12 @@ const Form = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     dispatch(postGame(gameForm));
-    window.alert("Juego creado exitosamente")
+    window.alert("Game created successfully")
     navigate("/home")
+  }
+
+  const enableButton = () => {
+    return Object.values(errors).some(error => error !== '');
   }
 
   return (
@@ -88,7 +92,7 @@ const Form = () => {
                 <div>
                   <input 
                     name='name'
-                    placeholder='Coloca un nombre...'
+                    placeholder='Enter a name...'
                     type='text'
                     value={gameForm.name}
                     onChange={handleChange}
@@ -105,7 +109,7 @@ const Form = () => {
                 <div>
                   <input 
                     name='background_image'
-                    placeholder='Coloca imagen...'
+                    placeholder='Enter the image URL...'
                     type='text'
                     value={gameForm.background_image}
                     onChange={handleChange}
@@ -122,7 +126,7 @@ const Form = () => {
                 <div>
                   <textarea 
                     name='description'
-                    placeholder='Coloca una descripcion'
+                    placeholder='Enter a description...'
                     maxLength={300}
                     value={gameForm.description}
                     onChange={handleChange}
@@ -166,7 +170,7 @@ const Form = () => {
             <div>
               <input 
                 name='released'
-                placeholder='Coloca fecha de lanzamiento'
+                placeholder='Enter release date...'
                 type='text'
                 value={gameForm.released}
                 onChange={handleChange}
@@ -182,7 +186,7 @@ const Form = () => {
             <div>
               <input 
                 name='rating'
-                placeholder='Coloca rating...'
+                placeholder='Enter rating...'
                 type='text'
                 value={gameForm.rating}
                 onChange={handleChange}
@@ -221,6 +225,7 @@ const Form = () => {
           <button 
             type='submit'
             className={style.createButton}
+            disabled={enableButton()}
           >CREATE GAME</button>
         </div>
 

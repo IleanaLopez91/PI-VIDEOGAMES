@@ -2,6 +2,7 @@ import {
   GET_ALLGAMES, 
   GET_GENRES,
   GET_VIDEOGAMES_BY_NAME, 
+  NO_RESULTS_FOUND,
   FILTER_VIDEOGAMES_BY_ORIGIN,
   FILTER_VIDEOGAMES_BY_GENRE, 
   ORDER_VIDEOGAMES_ALPHATICALLY,
@@ -13,12 +14,16 @@ import axios from "axios";
 
 export const getAllGames = () => {
   return async (dispatch) => {
-    const response = await axios.get("http://localhost:3001/videogames");
-    const allGames = response.data;
-    dispatch({
-      type: GET_ALLGAMES,
-      payload: allGames
-    })
+    try {
+      const response = await axios.get("http://localhost:3001/videogames");
+      const allGames = response.data;
+      dispatch({
+        type: GET_ALLGAMES,
+        payload: allGames
+      })
+    } catch (error) {
+      window.alert("Error al cargar los datos")
+    }
   }
 }
 
@@ -39,13 +44,26 @@ export const getGenres = () => {
 
 export function getVideoGamesByName(name) {
   return async function (dispatch) {
-    const { data } = await axios.get(
-      `http://localhost:3001/videogames?name=${name}`
-    );
-    return dispatch({
-      type: GET_VIDEOGAMES_BY_NAME,
-      payload: data,
-    });
+    try {
+        const { data } = await axios.get(
+          `http://localhost:3001/videogames?name=${name}`
+        );
+        const filteredData = data.filter(dat => dat !== null);
+
+        if(filteredData.length === 0){
+          window.alert("There are no games with that name")
+          dispatch({
+            type: NO_RESULTS_FOUND,
+          })
+        }else{
+          return dispatch({
+            type: GET_VIDEOGAMES_BY_NAME,
+            payload: data,
+          })
+        }
+    } catch (error) {
+      window.alert("Esta mul mal")
+    }
   };
 }
 
@@ -93,7 +111,6 @@ export const postGame = (form) => {
         ...data,
         genres: data.genres.map((genre) => genre.name),
       };
-      
       return dispatch({
         type: POST_GAME,
         payload: videoGameWithFormattedGenres

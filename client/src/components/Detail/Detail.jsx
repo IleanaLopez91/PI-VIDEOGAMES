@@ -9,7 +9,6 @@ const Detail = () => {
   const {id} = useParams();
 
   const [character, setCharacter] = useState([])
-  console.log(character)
 
   useEffect(() => {
     axios(`http://localhost:3001/videogames/${id}`)
@@ -19,6 +18,10 @@ const Detail = () => {
         }else{
           window.alert("No personaje!")
         }
+      })
+      .catch(error => {
+        console.error("Error:", error);
+        window.alert("Error al obtener el personaje");
       });
   },[id])
 
@@ -38,7 +41,7 @@ const Detail = () => {
       <div className={style.containerDetail}>
         <div className={style.columna1}>
           <div className={style.containerImage}>
-            <img src={character?.image} className={style.image}alt=''></img>
+            <img src={character?.background_image} className={style.image}alt=''></img>
           </div>  
           <div className={style.containerTextDescription}>
             <div className={style.textDescription}>
@@ -47,7 +50,7 @@ const Detail = () => {
               <p>Genres: {character.genres?.join(', ')}</p>
             </div>
             <div className={style.textDescription}>
-              Platform: <ul>{character.platform?.map((plat) => <li>{plat}</li>)}</ul>
+              Platforms: <ul>{character.platforms?.map((plat) => <li>{plat}</li>)}</ul>
             </div>
           </div>
         </div>

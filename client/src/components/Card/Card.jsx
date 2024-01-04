@@ -4,7 +4,7 @@ import {Link} from "react-router-dom";
 import style from "./Card.module.css";
 
 function Card ({id, name, background_image, genres}) {
-
+  
   return (
     <div className={style.cardContainer}>
 

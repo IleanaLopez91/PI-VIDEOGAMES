@@ -18,11 +18,13 @@ const SearchBar = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (searchName === "") {
+    if (searchName === "" || !/^[a-zA-Z0-9]+$/.test(searchName)){
       dispatch(getAllGames());
-    } else {
+      window.alert("You must enter a name that contains letters and/or numbers.")
+    }else{
       dispatch(getVideoGamesByName(searchName));
     }
+    setSearchName("")
   };
 
   const handleLogOut = () => {
@@ -32,7 +34,7 @@ const SearchBar = () => {
   return (
     <div>
       <input 
-        placeholder='Escribe un nombre...'
+        placeholder='Write a name...'
         type="search"
         value={searchName}
         onChange={handleSearchChange}
