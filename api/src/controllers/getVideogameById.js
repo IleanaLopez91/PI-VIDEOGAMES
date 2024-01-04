@@ -1,5 +1,5 @@
 const axios = require("axios");
-const { Videogame } = require("../db");
+const { Videogame, Genre } = require("../db");
 const { APY_KEY } = process.env;
 
 const cleanObject = (obj) => {
@@ -21,7 +21,11 @@ const getVideogameById = async (id, source) => {
         const { data } = await axios.get(`https://api.rawg.io/api/games/${id}?key=${APY_KEY}`);
         return cleanObject(data);
       }else{
-        return await Videogame.findByPk(id);
+        const gameDBGenre = await Videogame.findByPk(id, {
+          include: Genre
+        });
+        
+        return gameDBGenre
       }
     } catch (error) {
       throw new Error(error.message);

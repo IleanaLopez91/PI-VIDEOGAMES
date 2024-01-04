@@ -1,10 +1,10 @@
 const axios = require("axios");
-const { Videogame } = require("../db");
+const { Videogame, Genre } = require("../db");
 const { APY_KEY } = process.env;
 
 const videogames100 = async() => {
     let apiGames = [];
-    for(let i = 1; i <=5; i++){
+    for(let i = 1; i <=1; i++){
         const {data} = await axios.get(`http://api.rawg.io/api/games?key=${APY_KEY}&page=${i}`);
         apiGames = [...apiGames, ...data.results]
     }
@@ -26,15 +26,17 @@ const videogamesFiltered = (games) => {
     })
 }
 
-const getAllVideogames = async() => {
+const getAllVideogames = async () => {
     try {
-        const videogamesDB = await Videogame.findAll();
-        const videogamesAPI = videogamesFiltered(await videogames100());
-        const allVideogames = [...videogamesDB, ...videogamesAPI];
-        return allVideogames
+      const videogamesDB = await Videogame.findAll({
+        include: Genre, 
+      });
+      const videogamesAPI = videogamesFiltered(await videogames100());
+      const allVideogames = [...videogamesDB, ...videogamesAPI];
+      return allVideogames;
     } catch (error) {
-        throw new Error({error: error.message})
+      throw new Error({ error: error.message });
     }
-}
-
-module.exports = getAllVideogames
+  };
+  
+  module.exports = getAllVideogames;

@@ -37,7 +37,7 @@ const getAllVideogameByName = async (name) => {
         
         return [...videogamesFromDB, ...videogamesFromAPI];
     } catch (error) {
-        throw new Error({ error: error.message });
+        console.log({ error: error.message })
     }
     
 }

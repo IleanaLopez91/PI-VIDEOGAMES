@@ -9,7 +9,7 @@ const cleanGenre = (arr) => {
       };
     });
   };
-
+  
 const getAllGenres = async() => {
     const genresDB = await Genre.findAll();
     if(genresDB.length > 0){
